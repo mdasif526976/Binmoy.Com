@@ -35,7 +35,7 @@ const Navbar = () => {
         {menu}
        </ul>
     </div>
-    <Link className="bg-rose-400 p-5 font-bold text-white rounded-md  text-2xl">Binmoy.Com</Link>
+    <Link className="bg-rose-400 p-4 font-bold text-white rounded-md text-xl">Binmoy.Com</Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal p-0">

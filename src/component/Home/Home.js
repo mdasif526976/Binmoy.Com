@@ -1,5 +1,6 @@
 import React from 'react';
 import BannerHome from './BannerHome/BannerHome';
+import BannerHome2 from './BannerHome2/BannerHome2';
 
 const Home = () => {
     return (
@@ -10,7 +11,7 @@ const Home = () => {
                         <BannerHome></BannerHome>
                     </div>
                     <div>
-                        <h1>as</h1>
+                        <BannerHome2></BannerHome2>
                     </div>
                 </div>
             </div>
@@ -23,10 +24,11 @@ const Home = () => {
                             <button className="py-2 rounded-full px-6 bg-white text-black hover:bg-white hover:text-rose-500 ">Login</button>
                         </div>
                         <p>If a dog chews shoes whose shoes does he choose?</p>
-
-                        
-                    </div>
+                         </div>
                 </div>
+            </div>
+            <div className='col-span-6 bg-green-600'>
+<h1>d;ldlfl</h1>
             </div>
         </div>
     );
