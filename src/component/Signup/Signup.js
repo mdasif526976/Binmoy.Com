@@ -1,14 +1,26 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Authprovider/Authprovider';
 
 const Signup = () => {
-	const {googleSign,setUser} = useContext(AuthContext)
+	const {googleSign,setUser,SignUpWithEmailPassword} = useContext(AuthContext)
     const {handleSubmit,register,resetField,formState:{errors}} = useForm();
+	const navigate = useNavigate();
     const Signup =(data)=>{
         console.log(data)
+		SignUpWithEmailPassword(data.email,data.password)
+		.then(result=>{
+		toast.success('ok')
+		navigate('/')
+		})
+		.catch(err=>{
+			toast.error(`${err}`)
+		})
+		
     }
+	
 	const googleSignup =()=>{
       googleSign()
 	  .then(result=>{
@@ -27,8 +39,16 @@ const Signup = () => {
 		<div className="space-y-1 text-sm">
 			<label for="username" className="block text-[16px]">Enter your Name</label>
 			<input
-			{...register("email", { required:'Enter your Name'})}
-			type="text"  id="username" placeholder="Name"
+			{...register("name", { required:'Enter your Name'})}
+			type="text"  id="username" placeholder="Enter your Name"
+             className="w-full px-4 py-3 rounded-md border-gray-700
+			   focus:border-violet-400" />
+		</div>
+		<div className="space-y-1 text-sm">
+			<label for="username" className="block text-[16px]">Enter your Name</label>
+			<input
+			{...register("email", { required:'Enter your Email'})}
+			type="email"  id="username" placeholder="Enter your Email"
              className="w-full px-4 py-3 rounded-md border-gray-700
 			   focus:border-violet-400" />
 		</div>
