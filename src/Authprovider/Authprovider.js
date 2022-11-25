@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup}  from "firebase/auth";
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut}  from "firebase/auth";
 import { app } from '../firebase/Firebase.config';
+import toast from 'react-hot-toast';
 export const AuthContext = createContext();
 
 const auth = getAuth(app)
@@ -23,8 +24,16 @@ const loginUser = (email,password)=>{
     return signInWithEmailAndPassword(auth,email,password)
 }
 
+// logOut
+const logOut = ()=>{
+    signOut(auth).then(()=>{
+        toast.success('Log Out Successfully')
+    })
+}
+
      const authInfo = {
-        user,setUser,loading,setLoading,googleSign,SignUpWithEmailPassword,loginUser
+        user,setUser,loading,setLoading,googleSign,logOut
+        ,SignUpWithEmailPassword,loginUser
      };
 
     return (

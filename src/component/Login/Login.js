@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Authprovider/Authprovider';
 const Login = () => {
   const {googleSign,setUser,loginUser} = useContext(AuthContext);
@@ -63,7 +64,7 @@ const googlelogin =()=>{
           <input type='submit' className="bg-rose-400 btn" value='Login'/>
         </div>
         <div>
-          <p>No have a account ? <span className='hover:underline'>SignUp Now</span>  </p>
+          <p>No have a account ? <Link to='/signup' className='hover:underline'>SignUp Now</Link>  </p>
         </div>
         </form>
         <div className="divider">OR</div>

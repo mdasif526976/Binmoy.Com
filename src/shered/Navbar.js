@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaShoppingCart} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Authprovider/Authprovider';
 
 const Navbar = () => {
+  const {logOut} = useContext(AuthContext)
     const menu =<>
      <li><Link to='' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>Home</Link></li>
      <li><Link to='/product' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>Products</Link></li>
@@ -10,6 +12,8 @@ const Navbar = () => {
      <li><Link to='/signup' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>SignUp</Link></li>
      <li><Link to='' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>Blog</Link></li>
      <li><Link to='' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>About US</Link></li>
+     <li><button onClick={logOut} className='font-normal text-xl hover:bg-rose-500
+      hover:text-white rounded-md '>Logout</button></li>
      <li>
         <div className='relative'>
             <p className='bg-rose-400 px-1 absolute font-normal left-[39px] text-white top-2
