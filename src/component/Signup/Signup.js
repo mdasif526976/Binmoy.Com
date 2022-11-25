@@ -12,6 +12,8 @@ const Signup = () => {
         console.log(data)
 		SignUpWithEmailPassword(data.email,data.password)
 		.then(result=>{
+			const user = result.user;
+			setUser(user)
 		toast.success('ok')
 		navigate('/')
 		})
