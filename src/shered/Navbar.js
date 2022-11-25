@@ -7,7 +7,7 @@ const Navbar = () => {
      <li><Link to='' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>Home</Link></li>
      <li><Link to='/product' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>Products</Link></li>
      <li><Link to='/login' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>Login</Link></li>
-     <li><Link to='' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>SignUp</Link></li>
+     <li><Link to='/signup' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>SignUp</Link></li>
      <li><Link to='' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>Blog</Link></li>
      <li><Link to='' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>About US</Link></li>
      <li>
