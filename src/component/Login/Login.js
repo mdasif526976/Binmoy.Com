@@ -31,7 +31,7 @@ const login =(data)=>{
 const googlelogin =()=>{
   googleSign()
 	  .then(result=>{
-		const user = result.user;
+		const user = result.user; 
 		setUser(user);
 		console.log(user)
    setLoginEmail(user.email)
