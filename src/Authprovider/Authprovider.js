@@ -1,5 +1,5 @@
-import React, { createContext, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut}  from "firebase/auth";
+import React, { createContext, useEffect, useState } from 'react';
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut}  from "firebase/auth";
 import { app } from '../firebase/Firebase.config';
 import toast from 'react-hot-toast';
 export const AuthContext = createContext();
@@ -11,25 +11,39 @@ const Authprovider = ({children}) => {
 
     const provider = new GoogleAuthProvider();
   const googleSign=()=>{
+    setLoading(true)
       return signInWithPopup(auth,provider)  
   }
 
 //   create user 
 const SignUpWithEmailPassword = (email,password)=>{
+    setLoading(true)
     return createUserWithEmailAndPassword(auth,email,password)
 }
 
 // login user
 const loginUser = (email,password)=>{
+    setLoading(true)
     return signInWithEmailAndPassword(auth,email,password)
 }
 
 // logOut
 const logOut = ()=>{
+    setLoading(true)
     signOut(auth).then(()=>{
         toast.success('Log Out Successfully')
     })
 }
+
+// on state change
+useEffect( () =>{
+    const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+        setUser(currentUser);
+        setLoading(false);
+    });
+
+    return () => unsubscribe();
+}, [])
 
      const authInfo = {
         user,setUser,loading,setLoading,googleSign,logOut
