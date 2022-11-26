@@ -16,7 +16,7 @@ const BannerHome2 = () => {
 			</div>
 			<Link 
              className="px-5 mt-4 lg:mt-0 py-3 font-bold rounded-md border block
-              bg-rose-400 text-white">Shop Now ></Link>
+              bg-rose-400 text-white">Shop Now </Link>
 		</div>
 	</div>
 </div>

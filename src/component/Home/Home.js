@@ -34,7 +34,7 @@ const Home = () => {
             <div className='col-span-6 bg-green-600'>
             <Advatisement></Advatisement>
             </div>
-            <div className='col-span-6 mx-3'>
+            <div className='col-span-6 mx-3 mt-3'>
             <Catagoris></Catagoris>
             </div>
         </div>

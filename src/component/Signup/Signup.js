@@ -1,37 +1,71 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Authprovider/Authprovider';
+import useToken from '../../utilities/hooks/UseToken';
 
 const Signup = () => {
-	const {googleSign,setUser,SignUpWithEmailPassword} = useContext(AuthContext)
+	const {googleSign,setUser,SignUpWithEmailPassword,UpdateUser} = useContext(AuthContext)
     const {handleSubmit,register,resetField,formState:{errors}} = useForm();
+	const [createUserEmail,setCreatedUserEmail] = useState('');
+	const [token] = useToken(createUserEmail)
 	const navigate = useNavigate();
+	if(token){
+		navigate('/')
+	}
     const Signup =(data)=>{
         console.log(data)
 		SignUpWithEmailPassword(data.email,data.password)
 		.then(result=>{
 			const user = result.user;
 			setUser(user)
-		toast.success('ok')
-		navigate('/')
+			const userinfo = {
+				displayName: data.name
+			}
+			UpdateUser(userinfo)
+			.then(()=>{
+			  saveUser(data.name,data.email,data.type)
+		toast.success('Signup Successfully')
 		})
 		.catch(err=>{
 			toast.error(`${err}`)
 		})
 		
-    }
+		})}
 	
-	const googleSignup =()=>{
+	const googleSignUp=()=>{
       googleSign()
 	  .then(result=>{
 		const user = result.user;
 		setUser(user);
-		console.log(user)
+		const email =user.email;
+		const name = user.displayName;
+		const type = 'user';
+		saveUser(name,email,type)
+		console.log(user);
 	  })
 	  .catch(err=> console.log(err))
 	}
+
+
+
+	const saveUser = (name, email,type) =>{
+        const user ={name, email,type};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            setCreatedUserEmail(email);
+        
+    })
+	}
+
     return (
         <div>
             <div className=" bg-rose-100 lg:px-80 lg:py-36">
@@ -83,7 +117,7 @@ const Signup = () => {
 		<div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
 	</div>
 	<div className="">
-		<button onClick={googleSignup} className="px-3 py-2 rounded-md btn
+		<button onClick={googleSignUp} className="px-3 py-2 rounded-md btn
 		 btn-outline btn-success hover:text-white w-full">Continue With Google	
 		</button>
 		

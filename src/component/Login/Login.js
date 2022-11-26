@@ -1,19 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Authprovider/Authprovider';
+import useToken from '../../utilities/hooks/UseToken';
 const Login = () => {
   const {googleSign,setUser,loginUser} = useContext(AuthContext);
 const {register,handleSubmit,formState:{errors}} = useForm();
+const location = useLocation();
+const navigate = useNavigate();
+const [loginEmail,setLoginEmail] = useState('')
+const [token] = useToken(loginEmail)
+const from = location.state?.from?.pathname || '/';
+
+if(token){
+  navigate(from,{replace:true})
+  toast.success('login success')
+}
+
 const login =(data)=>{
-    console.log(data)
     loginUser(data.email,data.password)
     .then(result=>{
       const user = result.user;
       setUser(user)
-      console.log(user)
-      toast.success('login success')
+     setLoginEmail(user.email)
     })
     .catch(err=>console.log(err))
 
@@ -24,6 +34,7 @@ const googlelogin =()=>{
 		const user = result.user;
 		setUser(user);
 		console.log(user)
+   setLoginEmail(user.email)
 	  })
 	  .catch(err=> console.log(err))
 	}
