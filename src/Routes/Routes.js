@@ -7,6 +7,8 @@ import Products from "../component/Products/Products";
 import Signup from "../component/Signup/Signup";
 import DashboardLayout from "../layout/DashboardLayout/DashboardLayout";
 import Main from "../layout/Main/Main";
+import Error from "../shered/Error";
+import AdminProtect from "./AdminProtect/AdminProtect";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 
 export const router = createBrowserRouter([
@@ -40,8 +42,8 @@ export const router = createBrowserRouter([
    element:<PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
    children:[
     {
-        path:'/dashboard/admin',
-        element:<AdminPage></AdminPage>
+        path:'/dashboard',
+        element:<AdminProtect><AdminPage></AdminPage></AdminProtect>
     },
     {
         path:'/dashboard/admin/addProduct',
@@ -49,4 +51,8 @@ export const router = createBrowserRouter([
     }
    ]
     },
+    {
+        path:'*',
+        element:<Error></Error>
+    }
 ])
