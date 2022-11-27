@@ -3,6 +3,7 @@ import AdminPage from "../component/AdminPage/AdminPage";
 import AddProduct from "../component/AdminRoutes/AddProduct/AddProduct";
 import Home from "../component/Home/Home";
 import Login from "../component/Login/Login";
+import MyCart from "../component/MyCart/MyCart";
 import Products from "../component/Products/Products";
 import Signup from "../component/Signup/Signup";
 import DashboardLayout from "../layout/DashboardLayout/DashboardLayout";
@@ -43,10 +44,14 @@ export const router = createBrowserRouter([
    children:[
     {
         path:'/dashboard',
+        element:<MyCart></MyCart>
+    },
+    {
+        path:'/dashboard/admin',
         element:<AdminProtect><AdminPage></AdminPage></AdminProtect>
     },
     {
-        path:'/dashboard/admin/addProduct',
+        path:'/dashboard/seller/addProduct',
         element:<AddProduct></AddProduct>
     }
    ]

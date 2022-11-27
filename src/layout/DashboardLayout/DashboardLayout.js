@@ -4,17 +4,21 @@ import Navbar from '../../shered/Navbar';
 import { FaBars } from 'react-icons/fa';
 import { AuthContext } from '../../Authprovider/Authprovider';
 import useAdmin from '../../utilities/hooks/useAdmin';
+import useSeller from '../../utilities/hooks/useSeller';
 
 const DashboardLayout = () => {
     const {user}= useContext(AuthContext);
-    const [isAdmin] = useAdmin(user?.email)
+    const [isAdmin] = useAdmin(user?.email);
+    console.log(user.email)
+    const [isSeller] = useSeller(user?.email);
     return (
         <div>
         <Navbar></Navbar>
-            <div className="drawer">
+            <div className="drawer drawer-mobile">
   <input id="my-drawer" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content">
-  <label htmlFor="my-drawer" className="drawer-button text-xl mx-3 flex items-center"> <FaBars></FaBars>Dashboard</label>
+  <label htmlFor="my-drawer" className="drawer-button 
+  lg:hidden text-xl mx-3 flex items-center"> <FaBars></FaBars>Dashboard</label>
 
        <Outlet></Outlet>
   </div> 
@@ -24,8 +28,13 @@ const DashboardLayout = () => {
     { isAdmin &&
     <>
        <li><Link to='/dashboard/admin'>Admin Analitics</Link></li>
-      <li><Link to='/dashboard/admin/addProduct'>Add A Product</Link></li> 
+       <li><Link to='/dashboard/admin'>Admin Reported Iteams</Link></li>
      </>}
+    { isSeller &&
+    <>
+      <li><Link to='/dashboard/seller/addProduct'>Add A Product</Link></li> 
+     </>}
+     <li><Link to='/dashboard'>My Cart</Link></li> 
    
       
       

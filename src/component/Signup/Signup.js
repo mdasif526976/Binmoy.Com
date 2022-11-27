@@ -25,7 +25,8 @@ const Signup = () => {
 			}
 			UpdateUser(userinfo)
 			.then(()=>{
-			  saveUser(data.name,data.email,data.type)
+				const account = 'notVerified';
+			  saveUser(data.name,data.email,data.type,account)
 		toast.success('Signup Successfully')
 		})
 		.catch(err=>{
@@ -42,7 +43,8 @@ const Signup = () => {
 		const email =user.email;
 		const name = user.displayName;
 		const type = 'user';
-		saveUser(name,email,type)
+		const account = 'notVerified';
+		saveUser(name,email,type,account)
 		console.log(user);
 	  })
 	  .catch(err=> console.log(err))
@@ -50,8 +52,8 @@ const Signup = () => {
 
 
 
-	const saveUser = (name, email,type) =>{
-        const user ={name, email,type};
+	const saveUser = (name, email,type,account) =>{
+        const user ={name, email,type,account};
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -81,7 +83,7 @@ const Signup = () => {
 			   focus:border-violet-400" />
 		</div>
 		<div className="space-y-1 text-sm">
-			<label for="username" className="block text-[16px]">Enter your Name</label>
+			<label for="username" className="block text-[16px]">Enter your Email</label>
 			<input
 			{...register("email", { required:'Enter your Email'})}
 			type="email"  id="username" placeholder="Enter your Email"
