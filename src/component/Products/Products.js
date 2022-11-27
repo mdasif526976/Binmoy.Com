@@ -1,21 +1,17 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Card from '../card/Card';
-import { FaBars } from 'react-icons/fa';
 import { useQuery } from '@tanstack/react-query';
 import Spainer from '../../utilities/Spainer/Spainer';
+import axios from 'axios';
 
 
 const Products = () => {
     const params = useParams();
     const query = params.id;
-    const {data:products = [] , isLoading} = useQuery({
-        queryKey:['products'],
-        queryFn:async()=>{
-           const res = await fetch(`http://localhost:5000/products/${query}`)
-           const data = res.json();
-           return data;
-        }
+   
+    const {data:products = [] , isLoading} = useQuery(['products'], ()=>{
+        axios.get (`http://localhost:5000/products/${query}`)
+        .then((res) => res.data)
     })
     if(isLoading){
     return <Spainer></Spainer>
