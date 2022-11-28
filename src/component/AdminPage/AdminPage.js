@@ -7,7 +7,7 @@ const AdminPage = () => {
     const {data:users=[],isLoading,refetch} = useQuery({
       queryKey:['users'],
       queryFn:async()=>{
-          const res = await fetch('http://localhost:5000/users',{
+          const res = await fetch('https://server-sites.vercel.app//users',{
             headers:{
                'content-type':'application/json',
                authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -22,7 +22,7 @@ const AdminPage = () => {
     }
     console.log(users)
     const verifedSeller =(data)=>{
-      fetch(`http://localhost:5000/users/admin/${data}`,{
+      fetch(`https://server-sites.vercel.app//users/admin/${data}`,{
             method:'PUT',
             headers:{
                 authorization:`bearer ${localStorage.getItem('accessToken')}`

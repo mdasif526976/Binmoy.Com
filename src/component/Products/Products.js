@@ -14,7 +14,7 @@ const Products = () => {
     const {data:products = [] ,refetch, isLoading} = useQuery({
         queryKey: ['product'],
         queryFn:async()=>{
-          const res = await axios.get(`http://localhost:5000/products/${query}`)
+          const res = await axios.get(`https://server-sites.vercel.app/products/${query}`)
             const data = res.data;
             return data;  }
     })

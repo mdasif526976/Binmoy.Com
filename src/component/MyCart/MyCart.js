@@ -5,7 +5,7 @@ import Spainer from '../../utilities/Spainer/Spainer';
 
 const MyCart = () => {
 	const {user} = useContext(AuthContext);
-    const url = `http://localhost:5000/orders/${user.email}`;
+    const url = `https://server-sites.vercel.app/orders/${user.email}`;
     const {data:myOrders =[],isloading} = useQuery({
         queryKey:['bookings',user?.email],
         queryFn:async()=>{

@@ -17,7 +17,7 @@ const AddProduct = () => {
     const {data:seller=[],isLoading} = useQuery({
        queryKey:['seller',user.email],
         queryFn:async()=>{
-            const res = await fetch(`http://localhost:5000/users/findSeler/${user?.email}`,{
+            const res = await fetch(`https://server-sites.vercel.app/users/findSeler/${user?.email}`,{
                 headers:{
                     authorization:`bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -51,7 +51,7 @@ const AddProduct = () => {
     model:data.model,brand:data.brand,oldPrice:data.oldPrice,useTime:data.useTime,
     newPrice:data.newPrice,location:data.location         
             }       
-            fetch('http://localhost:5000/product',{
+            fetch('https://server-sites.vercel.app/product',{
                 method:'POST',
                 headers:{
                     'content-type': 'application/json',

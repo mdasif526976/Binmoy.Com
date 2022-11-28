@@ -10,7 +10,7 @@ const SellerAllProduct = () => {
     const {data:products=[],isLoading,refetch} = useQuery({
         queryKey:['seller'],
          queryFn:async()=>{
-             const res = await fetch(`http://localhost:5000/products/seller/${user?.email}`,{
+             const res = await fetch(`https://server-sites.vercel.app/products/seller/${user?.email}`,{
                  headers:{
                      authorization:`bearer ${localStorage.getItem('accessToken')}`
                  }
@@ -30,7 +30,7 @@ const SellerAllProduct = () => {
         fetch()
      }
      const deleteOne=(data)=>{
-        fetch(`http://localhost:5000/product/delete/${data}`,{
+        fetch(`https://server-sites.vercel.app/product/delete/${data}`,{
             method:'DELETE',
             headers:{
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

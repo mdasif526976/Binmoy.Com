@@ -12,7 +12,7 @@ const Modal = ({modalProduct,setproduct}) => {
             brand:modalProduct.brand,
             userNumbar:data.userNumbar,userLocation:data.userLocation,
         }
-        fetch('http://localhost:5000/order',{
+        fetch('https://server-sites.vercel.app/order',{
                 method: 'POST',
                 headers:{
                     'content-type': 'application/json',
