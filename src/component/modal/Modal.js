@@ -7,6 +7,7 @@ const Modal = ({modalProduct,setproduct}) => {
     const {handleSubmit,register} = useForm();
     const formSubmit = (data)=>{
         console.log(data);
+        const order = {email:data.email,buyerName:data.name,}
     }
     return (
         <div>
@@ -55,7 +56,7 @@ const Modal = ({modalProduct,setproduct}) => {
   <label className="label">
     <span className="label-text">Your Phone Numbar</span>
   </label>
-  <input type="text" placeholder="Type here"  {...register('phoneNumbar',{required:true})}
+  <input type="text" placeholder="Type here"  {...register('userNumbar',{required:true})}
    className="input w-full mb-2" />
 </div>
        <div className="form-control w-full">
