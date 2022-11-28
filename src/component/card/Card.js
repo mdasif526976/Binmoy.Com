@@ -22,8 +22,8 @@ const Card = ({product,setproduct}) => {
       </div>
 			<div className="flex flex-col items-start w-full ml-4">
 				<h4 className="text-xl font-semibold">{brand} {model}</h4>
-				<h4 className="text-sm font-medium">Seller Name:{ account === 'notVerified'
-         ? sellerName  :  verifedSeller  }</h4>
+				<h4 className="text-sm font-medium">Seller Name:{ account === 'verifed'
+         ?   verifedSeller:sellerName  }</h4>
 				<p className="text-sm">NewPrice: {newPrice}Tk</p>
 				<p className="text-sm">Old Price : {oldPrice}</p>
 				<p className="text-sm">Used : {useTime}</p>

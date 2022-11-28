@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../Authprovider/Authprovider';
 
 const Modal = ({modalProduct,setproduct}) => {
@@ -7,8 +8,25 @@ const Modal = ({modalProduct,setproduct}) => {
     const {handleSubmit,register} = useForm();
     const formSubmit = (data)=>{
         console.log(data);
-        const order = {email:data.email,buyerName:data.name,}
+        const order = {buyerEmail:data.email,buyerName:data.name,img:modalProduct.img,
+            brand:modalProduct.brand,
+            userNumbar:data.userNumbar,userLocation:data.userLocation,
+        }
+        fetch('http://localhost:5000/order',{
+                method: 'POST',
+                headers:{
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(order)
+            })
+            .then(res=> res.json())
+            .then(data=> {
+                  toast.success('Booking added successfully')
+                  setproduct(null)
+                })
     }
+    
     return (
         <div>
 

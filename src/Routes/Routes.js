@@ -6,6 +6,7 @@ import Home from "../component/Home/Home";
 import Login from "../component/Login/Login";
 import MyCart from "../component/MyCart/MyCart";
 import Products from "../component/Products/Products";
+import SellerAllProduct from "../component/SellerAllProduct/SellerAllProduct";
 import Signup from "../component/Signup/Signup";
 import DashboardLayout from "../layout/DashboardLayout/DashboardLayout";
 import Main from "../layout/Main/Main";
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
     {
         path:'/dashboard/seller/addProduct',
         element:<AddProduct></AddProduct>
+    },
+    {
+        path:'/dashboard/seller/allProduct',
+        element:<SellerAllProduct></SellerAllProduct>
     }
    ]
     },

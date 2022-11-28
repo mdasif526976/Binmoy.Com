@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { FaShoppingCart} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Authprovider/Authprovider';
 
@@ -23,14 +22,7 @@ const Navbar = () => {
       </> 
      }
      
-     <li>
-        <div className='relative'>
-            <p className='bg-rose-400 px-1 absolute font-normal left-[39px] text-white top-2
-             rounded-full'>0</p>
-        <Link className=' font-normal w-4 text-xl'><FaShoppingCart></FaShoppingCart></Link>
-          
-        </div>
-     </li>
+     
 
     </>
     
