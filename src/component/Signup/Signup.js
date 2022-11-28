@@ -93,7 +93,7 @@ const Signup = () => {
 		<div className="space-y-1 text-sm">
 			<label for="username" className="block text-[16px]">Choose your Option</label>
 			<select 
-			{...register("type")} defaultValue='User'
+			{...register("type")} value='User'
 			className="select select-bordered w-full ">
          <option>User</option>
          <option>Seller</option>
