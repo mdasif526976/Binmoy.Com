@@ -7,9 +7,9 @@ const Navbar = () => {
   const {logOut,user} = useContext(AuthContext)
     const menu =
     <>
-     <li><Link to='' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>Home</Link></li>
+     <li><Link to='/' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>Home</Link></li>
    
-     <li><Link to='' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>Blog</Link></li>
+     <li><Link to='/blog' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>Blog</Link></li>
      <li><Link to='' className='font-normal text-xl hover:bg-rose-500 hover:text-white rounded-md '>About US</Link></li>
      {user?.uid ?
      <>

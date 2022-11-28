@@ -10,7 +10,6 @@ import Spainer from '../../../utilities/Spainer/Spainer';
 
 const AddProduct = () => {
     const {user,logOut} = useContext(AuthContext);
-    console.log(user)
     const now = new Date();
     const date = dateFormat(now, "mmmm dS, yyyy");
     const {resetField, handleSubmit,register} = useForm();
@@ -35,13 +34,10 @@ const AddProduct = () => {
         return <Spainer></Spainer>
     }
            
-    const addProduct=(data)=>{
-        console.log(data)
-       
+    const addProduct=(data)=>{      
         const image = data.img[0];
         const fromData = new FormData();
         fromData.append('image', image);
-        console.log(imgbbKey)
        const url = `https://api.imgbb.com/1/upload?key=${imgbbKey}`
        fetch(url,{
         method: 'POST',
@@ -52,7 +48,7 @@ const AddProduct = () => {
         if(imgData.success){
             const product = {img:imgData.data.url, sellerName:seller.name,
                 time:date, email:seller.email, account:seller.account,
-    model:data.modal,brand:data.brand,oldPrice:data.oldPrice,useTime:data.useTime,
+    model:data.model,brand:data.brand,oldPrice:data.oldPrice,useTime:data.useTime,
     newPrice:data.newPrice,location:data.location         
             }       
             fetch('http://localhost:5000/product',{
