@@ -13,7 +13,7 @@ const BannerHome = () => {
 		</div>
 		<div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
 			<h1 className="text-4xl font-bold leading-none sm:text-6xl">Welcome To <br/>
-       <span className='text-rose-400'>Binimoy.Com</span>
+       <span className='text-rose-400 text-3xl lg:text-4xl font-bold'>Binimoy.Com</span>
 			</h1>
 			<p className="mt-6 mb-8 text-xl font-semibold sm:mb-12">We Privides You 4 Catagoris Of Phones 
 				
