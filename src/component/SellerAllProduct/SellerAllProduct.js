@@ -1,12 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Authprovider/Authprovider';
 import Spainer from '../../utilities/Spainer/Spainer';
 
 const SellerAllProduct = () => {
     const {logOut,user} = useContext(AuthContext);
-    const [advertiseiteam,setAdvertiseIteam] = useState('');
     const {data:products=[],isLoading,refetch} = useQuery({
         queryKey:['seller'],
          queryFn:async()=>{
@@ -27,7 +26,21 @@ const SellerAllProduct = () => {
          return <Spainer></Spainer>
      }
      const advertise=(data)=>{
-        fetch()
+        fetch(`https://server-sites.vercel.app/advertise/${data}`,{
+            method:'PUT',
+            headers:{
+                'content-type':'appplication/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+           })
+           .then(res=> res.json())
+           .then(data=> {
+            console.log(data)
+            if(data.modifiedCount > 0){
+                toast.success(' Advertise Success')
+                refetch()
+            }
+           })
      }
      const deleteOne=(data)=>{
         fetch(`https://server-sites.vercel.app/product/delete/${data}`,{
@@ -70,7 +83,10 @@ const SellerAllProduct = () => {
     <img src={product.img} alt='' />
   </div>
 </div></td>
-            <td><button onClick={()=>advertise(product)} className='btn btn-primary'>Advertise</button></td>
+            <td>
+                {product.advertise ===true ?
+                    <button onClick={()=>advertise(product._id)} className='btn btn-primary'>Advertise</button>
+                : <h4 className='text-xl'>Advertised</h4> }</td>
             <td><button onClick={()=>deleteOne(product._id)} className='btn btn-error'>Delete</button></td>
         
           </tr>)

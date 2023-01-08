@@ -18,11 +18,11 @@ const Card = ({product,setproduct}) => {
     <div>
 <div className="flex bg-white shadow-2xl rounded-lg p-4 m-2">
 			<div className="w-80 bg-gray-300 rounded-lg">
-      <figure><img src={img} alt="Album"/></figure>
+      <figure><img className='h-52' src={img} alt="Album"/></figure>
       </div>
 			<div className="flex flex-col items-start w-full ml-4">
 				<h4 className="text-xl font-semibold">{brand} {model}</h4>
-				<h4 className="text-sm font-medium">Seller Name:{ account === 'verifed'
+				<h4 className="text-sm font-medium">Seller Name:{ account === 'verified'
          ?   verifedSeller:sellerName  }</h4>
 				<p className="text-sm">NewPrice: {newPrice}Tk</p>
 				<p className="text-sm">Old Price : {oldPrice}</p>

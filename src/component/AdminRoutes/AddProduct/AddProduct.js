@@ -6,12 +6,14 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Navigate } from 'react-router-dom';
 import Spainer from '../../../utilities/Spainer/Spainer';
+import UseTitle from '../../../utilities/hooks/useTittle';
 
 
 const AddProduct = () => {
     const {user,logOut} = useContext(AuthContext);
+    UseTitle('Add A Product')
     const now = new Date();
-    const date = dateFormat(now, "mmmm dS, yyyy");
+    const date = dateFormat(now, "mmmm, dS");
     const {resetField, handleSubmit,register} = useForm();
     const imgbbKey = process.env.REACT_APP_ImggbbKey;
     const {data:seller=[],isLoading} = useQuery({

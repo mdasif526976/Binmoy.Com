@@ -5,6 +5,7 @@ import Blog from "../component/blog/Blog";
 import Home from "../component/Home/Home";
 import Login from "../component/Login/Login";
 import MyCart from "../component/MyCart/MyCart";
+import Payment from "../component/Payment/Payment";
 import Products from "../component/Products/Products";
 import SellerAllProduct from "../component/SellerAllProduct/SellerAllProduct";
 import Signup from "../component/Signup/Signup";
@@ -55,6 +56,11 @@ export const router = createBrowserRouter([
     {
         path:'/dashboard/admin',
         element:<AdminProtect><AdminPage></AdminPage></AdminProtect>
+    },
+    {
+        path:'/dashboard/Payment/:id',
+        element:<Payment></Payment>,
+        loader:({params})=> fetch(`https://server-sites.vercel.app/order/${params.id}`)
     },
     {
         path:'/dashboard/seller/addProduct',

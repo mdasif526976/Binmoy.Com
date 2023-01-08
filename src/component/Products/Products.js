@@ -5,11 +5,13 @@ import Spainer from '../../utilities/Spainer/Spainer';
 import axios from 'axios';
 import Card from '../card/Card';
 import Modal from '../modal/Modal';
+import UseTitle from '../../utilities/hooks/useTittle';
 
 
 const Products = () => {
     const params = useParams();
     const query = params.id;
+    UseTitle(`Product of ${params.id}`)
    const [modalProduct,setproduct] = useState(null)
     const {data:products = [] ,refetch, isLoading} = useQuery({
         queryKey: ['product'],
@@ -21,7 +23,7 @@ const Products = () => {
     if(isLoading){
     return <Spainer></Spainer>
     }
-  console.log(modalProduct)
+  console.log(products)
 
     return (
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 m-8 rounded-full'>

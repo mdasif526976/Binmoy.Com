@@ -3,12 +3,14 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Authprovider/Authprovider';
+import UseTitle from '../../utilities/hooks/useTittle';
 import useToken from '../../utilities/hooks/UseToken';
 
 const Signup = () => {
 	const {googleSign,setUser,SignUpWithEmailPassword,UpdateUser} = useContext(AuthContext)
     const {handleSubmit,register,resetField,formState:{errors}} = useForm();
 	const [createUserEmail,setCreatedUserEmail] = useState('');
+	UseTitle('SignUp')
 	const [token] = useToken(createUserEmail)
 	const navigate = useNavigate();
 	if(token){
@@ -35,6 +37,7 @@ const Signup = () => {
 		
 		})}
 	
+	
 	const googleSignUp=()=>{
       googleSign()
 	  .then(result=>{
@@ -54,7 +57,7 @@ const Signup = () => {
 
 	const saveUser = (name, email,type,account) =>{
         const user ={name, email,type,account};
-        fetch('http://localhost:5000/users', {
+        fetch('https://server-sites.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -66,6 +69,7 @@ const Signup = () => {
             setCreatedUserEmail(email);
         
     })
+	
 	}
 
     return (
@@ -93,7 +97,7 @@ const Signup = () => {
 		<div className="space-y-1 text-sm">
 			<label for="username" className="block text-[16px]">Choose your Option</label>
 			<select 
-			{...register("type")} value='User'
+			{...register("type")} defaultValue='User'
 			className="select select-bordered w-full ">
          <option>User</option>
          <option>Seller</option>
