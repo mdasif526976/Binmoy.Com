@@ -69,6 +69,7 @@ const SellerAllProduct = () => {
         <th></th>
         <th>Name</th>
         <th>Photo</th>
+        <th>Status</th>
         <th>Advertise</th>
         <th>Actions</th>
       </tr>
@@ -83,11 +84,12 @@ const SellerAllProduct = () => {
     <img src={product.img} alt='' />
   </div>
 </div></td>
+<td>{product.sold}</td>
             <td>
-                {product.advertise ===true ?
-                    <button onClick={()=>advertise(product._id)} className='btn btn-primary'>Advertise</button>
+                {product.advertise !== true ?
+                    <button onClick={()=>advertise(product._id)} className='btn btn-info text-white'>Advertise</button>
                 : <h4 className='text-xl'>Advertised</h4> }</td>
-            <td><button onClick={()=>deleteOne(product._id)} className='btn btn-error'>Delete</button></td>
+            <td><button onClick={()=>deleteOne(product._id)} className='btn text-white btn-error'>Delete</button></td>
         
           </tr>)
        }

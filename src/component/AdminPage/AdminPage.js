@@ -1,15 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import UseTitle from '../../utilities/hooks/useTittle';
 import Spainer from '../../utilities/Spainer/Spainer';
 
 const AdminPage = () => {
-   UseTitle('Admin')
+   UseTitle('AllSeller | Admin')
     const {data:users=[],isLoading,refetch} = useQuery({
       queryKey:['users'],
       queryFn:async()=>{
-          const res = await fetch('https://server-sites.vercel.app/users',{
+          const res = await fetch('https://server-sites.vercel.app/seller',{
             headers:{
                'content-type':'application/json',
                authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -27,7 +28,8 @@ const AdminPage = () => {
       fetch(`https://server-sites.vercel.app/users/admin/${data}`,{
             method:'PUT',
             headers:{
-                authorization:`bearer ${localStorage.getItem('accessToken')}`
+               'content-type':'application/json',
+               authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
           })
           .then(res=> res.json())
@@ -44,6 +46,25 @@ const AdminPage = () => {
         })
         .catch(err=> console.error(err))
     }
+    const deleteUser=(data)=>{
+       console.log(data)
+       fetch(`https://server-sites.vercel.app/delete/user/${data}`,{
+         method:'Delete',
+         headers:{
+            'content-type':'application/json',
+            authorization: `bearer ${localStorage.getItem('accessToken')}`
+         }
+       })
+       .then(res=>res.json())
+       .then(data=>{
+         if (data.deletedCount > 0) {
+            refetch()
+            toast.success('Delete Successful')
+
+        }
+       })
+       
+    }
    return (
       <div>
          <h1 className='text-2xl font-bold'>Welcome To Admin</h1> 
@@ -54,7 +75,7 @@ const AdminPage = () => {
         <th>Name</th>
          <th>Email</th>
          <th>Account Type</th>
-         <th>Action</th>
+         <th>Account Status</th>
          <th>Delete</th>
             </tr>
             </thead>
@@ -65,10 +86,16 @@ const AdminPage = () => {
                    <td>{user.name}</td>
                    <td>{user.email}</td>
                    <td>{user.type}</td>
-                   <td>{user?.account === "notVerified" && 
-                    <button onClick={()=>verifedSeller(user._id)}
-                     className='btn text-white btn-primary'>Verified</button>}</td>
-                   <td><button className='btn text-white btn-error'>Delete User</button></td>
+                   <td>{user?.account === "notVerified" ?
+                       <button onClick={()=>verifedSeller(user._id)}
+                       className='btn text-white btn-info'> Verify Now !</button> :
+                   <p className='text-blue-500 text-xl tooltip' data-tip="Verifed"><CheckCircleIcon
+                   className='w-8 h-8 text-blue-500'
+                   ></CheckCircleIcon></p> 
+                }</td>
+                   <td><button
+                    onClick={()=>deleteUser(user._id)}
+                     className='btn text-white btn-error'>Delete Seller</button></td>
                    
                    </tr>
 

@@ -6,12 +6,12 @@ import { AuthContext } from '../../Authprovider/Authprovider';
 const Modal = ({modalProduct,setproduct}) => {
     const {user} = useContext(AuthContext);
     const {handleSubmit,register} = useForm();
-    console.log(modalProduct)
+    console.log('p',modalProduct)
     const formSubmit = (data)=>{
         console.log(data);
         const order = {buyerEmail:data.email,buyerName:data.name,img:modalProduct.img,
             brand:modalProduct.brand,model:modalProduct.model,price:modalProduct.newPrice,
-            userNumbar:data.userNumbar,userLocation:data.userLocation,
+            userNumbar:data.userNumbar,userLocation:data.userLocation,productId:modalProduct._id
         }
         fetch('https://server-sites.vercel.app/order',{
                 method: 'POST',

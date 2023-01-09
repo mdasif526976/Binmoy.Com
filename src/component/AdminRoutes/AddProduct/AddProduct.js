@@ -51,7 +51,7 @@ const AddProduct = () => {
             const product = {img:imgData.data.url, sellerName:seller.name,
                 time:date, email:seller.email, account:seller.account,
     model:data.model,brand:data.brand,oldPrice:data.oldPrice,useTime:data.useTime,
-    newPrice:data.newPrice,location:data.location         
+    newPrice:data.newPrice,location:data.location,sold:'true'        
             }       
             fetch('https://server-sites.vercel.app/product',{
                 method:'POST',

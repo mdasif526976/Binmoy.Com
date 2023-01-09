@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { TrashIcon } from '@heroicons/react/24/solid'
+import { CheckCircleIcon} from '@heroicons/react/24/solid'
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Authprovider/Authprovider';
 import UseTitle from '../../utilities/hooks/useTittle';
 import Spainer from '../../utilities/Spainer/Spainer';
 import { toast } from 'react-hot-toast';
+
 
 const MyCart = () => {
 	const {user} = useContext(AuthContext);
@@ -56,8 +58,8 @@ const MyCart = () => {
         <th>Brand</th>
         <th>Photo</th>
         <th>Meeting Location</th>
-        <th>Payment Now</th>
-        <th>Remove</th>
+        <th>Payment</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -73,9 +75,12 @@ const MyCart = () => {
   </div>
 </div></td>
         <td>{order.userLocation}</td>
+        {order.paid === true ? <td><p className='text-xl font-bold text-green-500'>Payment Complate</p></td>:
         <td><Link to={`/dashboard/Payment/${order._id}`}
-         className='btn btn-info text-white'>Payment Now</Link></td>
-        <td> <button onClick={()=>deleteOrder(order._id)}><TrashIcon className="h-6 w-6 text-red-500"/></button></td>
+         className='btn btn-info text-white'>Payment Now</Link></td>}
+        <td>{ order.paid === true ? <CheckCircleIcon className='h-6 w-6 text-green-500'></CheckCircleIcon> :
+        <button className='tooltip' data-tip="Remove" onClick={()=>deleteOrder(order._id)}>
+          <TrashIcon className="h-6 w-6 text-red-500"/></button>}</td>
       </tr>
          )
        }

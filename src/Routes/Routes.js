@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import AdminPage from "../component/AdminPage/AdminPage";
+import ReportProduct from "../component/AdminPage/ReportProduct/ReportProduct";
 import AddProduct from "../component/AdminRoutes/AddProduct/AddProduct";
+import AllUserAdmin from "../component/AdminRoutes/AllUserAdmin/AllUserAdmin";
 import Blog from "../component/blog/Blog";
 import Home from "../component/Home/Home";
 import Login from "../component/Login/Login";
@@ -56,6 +58,14 @@ export const router = createBrowserRouter([
     {
         path:'/dashboard/admin',
         element:<AdminProtect><AdminPage></AdminPage></AdminProtect>
+    },
+    {
+        path:'/dashboard/admin/users',
+        element:<AdminProtect><AllUserAdmin></AllUserAdmin></AdminProtect>
+    },
+    {
+        path:'/dashboard/admin/report',
+        element:<AdminProtect><ReportProduct></ReportProduct></AdminProtect>
     },
     {
         path:'/dashboard/Payment/:id',

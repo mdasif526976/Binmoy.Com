@@ -27,8 +27,9 @@ const DashboardLayout = () => {
     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
     { isAdmin &&
     <>
-       <li><Link to='/dashboard/admin'>Admin Analitics</Link></li>
-       <li><Link to='/dashboard/admin'>Admin Reported Iteams</Link></li>
+       <li><Link to='/dashboard/admin'>All Seller</Link></li>
+       <li><Link to='/dashboard/admin/users'>All Users</Link></li>
+       <li><Link to='/dashboard/admin/report'>Admin Reported Iteams</Link></li>
      </>}
     { isSeller &&
     <>
